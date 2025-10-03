@@ -1,0 +1,175 @@
+﻿@model APPR6312PART2.Models.Donation
+@{
+    ViewData["Title"] = "Make a Donation";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow border-success">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">Make a Donation</h2>
+                    <p class="mb-0">Your generosity helps communities in need during disasters</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Donate" method="post">
+                        <!-- Donor Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h4 class="text-success mb-3"> Donor Information</h4>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DonorName" class="form-label fw-bold text-success">Full Name *</label>
+                                <input asp-for="DonorName" class="form-control" placeholder="Enter your full name" required>
+                                <span asp-validation-for="DonorName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label fw-bold text-success">Email Address *</label>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" required>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNumber" class="form-label fw-bold text-success">Phone Number *</label>
+                                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" required>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Donation Type -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h4 class="text-success mb-3"> Donation Type</h4>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DonationType" class="form-label fw-bold text-success">What would you like to donate? *</label>
+                                <select asp-for="DonationType" class="form-select" id="donationType" required>
+                                    <option value="">Select Donation Type</option>
+                                    <option value="Monetary">Monetary Donation</option>
+                                    <option value="Food">Food Supplies</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Medical">Medical Supplies</option>
+                                    <option value="Shelter">Shelter Materials</option>
+                                    <option value="Other">Other Items</option>
+                                </select>
+                                <span asp-validation-for="DonationType" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Fields based on Donation Type -->
+                        <div id="monetaryFields" class="donation-fields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label asp-for="MonetaryAmount" class="form-label fw-bold text-success">Amount (R) *</label>
+                                    <input asp-for="MonetaryAmount" type="number" step="0.01" class="form-control" placeholder="Enter amount in USD">
+                                    <span asp-validation-for="MonetaryAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="itemFields" class="donation-fields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label asp-for="ItemDescription" class="form-label fw-bold text-success">Item Description *</label>
+                                    <input asp-for="ItemDescription" class="form-control" placeholder="Describe the items you're donating">
+                                    <span asp-validation-for="ItemDescription" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Quantity" class="form-label fw-bold text-success">Quantity *</label>
+                                    <input asp-for="Quantity" type="number" class="form-control" placeholder="Number of items">
+                                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Allocation Preference -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h4 class="text-success mb-3">🎯 Allocation Preference</h4>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <label asp-for="AllocationPreference" class="form-label fw-bold text-success">Where should we allocate your donation? *</label>
+                                <select asp-for="AllocationPreference" class="form-select" required>
+                                    <option value="">Select Allocation Preference</option>
+                                    <option value="Most Urgent Need">Wherever it's needed most urgently</option>
+                                    <option value="Recent Disasters">Recent disaster areas</option>
+                                    <option value="Medical Relief">Medical and healthcare support</option>
+                                    <option value="Food Security">Food and nutrition programs</option>
+                                    <option value="Shelter Support">Shelter and housing assistance</option>
+                                    <option value="Children and Families">Children and family support</option>
+                                </select>
+                                <span asp-validation-for="AllocationPreference" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h4 class="text-success mb-3">🚚 Delivery Information</h4>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-check">
+                                    <input asp-for="IsUrgent" class="form-check-input" type="checkbox">
+                                    <label asp-for="IsUrgent" class="form-check-label fw-bold text-success">
+                                        This donation requires urgent delivery
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PreferredDate" class="form-label fw-bold text-success">Preferred Delivery/Pickup Date</label>
+                                <input asp-for="PreferredDate" type="date" class="form-control">
+                                <span asp-validation-for="PreferredDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="mb-4">
+                            <label asp-for="AdditionalNotes" class="form-label fw-bold text-success">Additional Notes</label>
+                            <textarea asp-for="AdditionalNotes" class="form-control" rows="3" placeholder="Any special instructions or additional information..."></textarea>
+                            <span asp-validation-for="AdditionalNotes" class="text-danger"></span>
+                        </div>
+
+                        <!-- Information Alert -->
+                        <div class="alert alert-info">
+                            <h6 class="alert-heading">ℹ️ Important Information</h6>
+                            <p class="mb-0">
+                                After submitting this form, our team will contact you within 24 hours to coordinate the donation process.
+                                For monetary donations, we will provide secure payment instructions.
+                            </p>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                            <button type="submit" class="btn btn-success btn-lg">Submit Donation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const donationType = document.getElementById('donationType');
+        const monetaryFields = document.getElementById('monetaryFields');
+        const itemFields = document.getElementById('itemFields');
+
+        function toggleFields() {
+            // Hide all fields first
+            monetaryFields.style.display = 'none';
+            itemFields.style.display = 'none';
+
+            // Show relevant fields based on selection
+            if (donationType.value === 'Monetary') {
+                monetaryFields.style.display = 'block';
+            } else if (donationType.value !== '' && donationType.value !== 'Monetary') {
+                itemFields.style.display = 'block';
+            }
+        }
+
+        if (donationType) {
+            donationType.addEventListener('change', toggleFields);
+            toggleFields(); // Initialize on page load
+        }
+    });
+</script>

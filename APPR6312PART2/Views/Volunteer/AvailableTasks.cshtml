@@ -1,0 +1,80 @@
+﻿@model IEnumerable<object> 
+@{
+    ViewData["Title"] = "Available Tasks";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-success">📋 Available Volunteer Tasks</h1>
+                <div>
+                    <a href="@Url.Action("Register", "Volunteer")" class="btn btn-warning btn-lg me-2">
+                        🤝 Register to Volunteer
+                    </a>
+                    <a href="@Url.Action("ViewVolunteers", "Volunteer")" class="btn btn-outline-success btn-lg">
+                        👥 View Volunteers
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var task in Model)
+                {
+                    // Use reflection safely for optional properties
+                    var type = task.GetType();
+
+                    var title = type.GetProperty("Title")?.GetValue(task)?.ToString() ?? "No Title";
+                    var description = type.GetProperty("Description")?.GetValue(task)?.ToString() ?? "";
+                    var location = type.GetProperty("Location")?.GetValue(task)?.ToString() ?? "Unknown";
+                    var duration = type.GetProperty("Duration")?.GetValue(task)?.ToString() ?? "Unknown";
+                    var skills = type.GetProperty("SkillsRequired")?.GetValue(task)?.ToString() ?? "None";
+                    var urgency = type.GetProperty("Urgency")?.GetValue(task)?.ToString() ?? "Low";
+
+                    var urgencyClass = urgency switch
+                    {
+                        "High" => "danger",
+                        "Medium" => "warning",
+                        _ => "info"
+                    };
+
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">@title</h5>
+                                <span class="badge bg-@urgencyClass">@urgency Priority</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">@description</p>
+
+                                <div class="mb-3">
+                                    <h6 class="text-success">📍 Location</h6>
+                                    <p class="mb-2">@location</p>
+
+                                    <h6 class="text-success">⏱️ Duration</h6>
+                                    <p class="mb-2">@duration</p>
+
+                                    <h6 class="text-success">🛠️ Skills Required</h6>
+                                    <p class="mb-0">@skills</p>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="@Url.Action("Register", "Volunteer")" class="btn btn-outline-success btn-sm">Apply for this Task</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <div class="bg-light p-5 rounded">
+                    <h3 class="text-success mb-3">Ready to Make a Difference?</h3>
+                    <p class="text-muted mb-4">Join our team of dedicated volunteers and help communities in need.</p>
+                    <a href="@Url.Action("Register", "Volunteer")" class="btn btn-success btn-lg me-3">Register Now</a>
+                    <a href="@Url.Action("VolunteerImpact", "Volunteer")" class="btn btn-outline-warning btn-lg">See Our Impact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

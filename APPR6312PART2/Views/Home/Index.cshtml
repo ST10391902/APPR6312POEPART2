@@ -1,0 +1,156 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero Section -->
+<div class="hero-section bg-success text-white py-5 mb-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Gift of the Givers Foundation</h1>
+        <p class="lead mx-auto" style="max-width: 700px;">
+            Africa's largest disaster relief organization delivering humanitarian aid
+            and life-saving interventions to vulnerable communities across the globe since 1992.
+        </p>
+        <div class="mt-4">
+            <a href="@Url.Action("Donate", "Donation")" class="btn btn-warning btn-lg me-3">Support Our Mission</a>
+            <a href="@Url.Action("About", "Home")" class="btn btn-outline-light btn-lg">Our Story</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Features Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="section-title">Our Humanitarian Services</h2>
+            <p class="text-muted">Comprehensive aid programs addressing multiple aspects of human suffering</p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center border-warning">
+                <div class="card-body">
+                    <div class="feature-icon mb-3 text-warning">
+                        <h1>🏥</h1>
+                    </div>
+                    <h5 class="card-title text-success">Medical Relief</h5>
+                    <p class="card-text">Deploying medical teams, running clinics, and providing essential medicines to crisis-affected regions.</p>
+                    <a href="@Url.Action("About", "Home")" class="btn btn-outline-success">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center border-success">
+                <div class="card-body">
+                    <div class="feature-icon mb-3 text-success">
+                        <h1>💧</h1>
+                    </div>
+                    <h5 class="card-title text-success">Water Provision</h5>
+                    <p class="card-text">Drilling boreholes and providing clean water solutions to drought-stricken communities.</p>
+                    <a href="@Url.Action("About", "Home")" class="btn btn-outline-success">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center border-warning">
+                <div class="card-body">
+                    <div class="feature-icon mb-3 text-warning">
+                        <h1>📚</h1>
+                    </div>
+                    <h5 class="card-title text-success">Education Support</h5>
+                    <p class="card-text">Building schools, providing educational materials, and supporting orphaned children.</p>
+                    <a href="@Url.Action("About", "Home")" class="btn btn-outline-success">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center border-success">
+                <div class="card-body">
+                    <div class="feature-icon mb-3 text-success">
+                        <h1>🍽️</h1>
+                    </div>
+                    <h5 class="card-title text-success">Food Security</h5>
+                    <p class="card-text">Providing nutritious food parcels and sustainable agricultural solutions to combat hunger.</p>
+                    <a href="@Url.Action("About", "Home")" class="btn btn-outline-success">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="section-title">30 Years of Humanitarian Excellence</h2>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <div class="stat-number text-success fw-bold display-6">45+</div>
+            <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <div class="stat-number text-warning fw-bold display-6">R2.5B+</div>
+            <div class="stat-label">Humanitarian Aid Delivered</div>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <div class="stat-number text-success fw-bold display-6">500+</div>
+            <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <div class="stat-number text-warning fw-bold display-6">1992</div>
+            <div class="stat-label">Founded by Dr. Imtiaz Sooliman</div>
+        </div>
+    </div>
+
+    <!-- Recent Missions -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="section-title">Current Relief Operations</h2>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge bg-warning mb-2">Active</span>
+                    <h5 class="text-success">Turkey-Syria Earthquake</h5>
+                    <p>Providing search and rescue, medical aid, and shelter to affected communities.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge bg-warning mb-2">Active</span>
+                    <h5 class="text-success">Malawi Cyclone Relief</h5>
+                    <p>Emergency response to flooding and displacement in Southern Africa.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge bg-success mb-2">Ongoing</span>
+                    <h5 class="text-success">South African Feeding Schemes</h5>
+                    <p>Daily food distribution to vulnerable communities across all provinces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Alert -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">🆘 Emergency Response Line</h4>
+        <p class="mb-0">For urgent humanitarian assistance or to report a crisis situation: <strong class="text-success">0800 00 66 99</strong></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="bg-light p-5 rounded">
+                <h3 class="text-success mb-3">Ready to Make a Difference?</h3>
+                <p class="text-muted mb-4">Join thousands of others who are helping communities in need.</p>
+                <a href="@Url.Action("Donate", "Donation")" class="btn btn-success btn-lg me-3">Join Now</a>
+                <a href="@Url.Action("About", "Home")" class="btn btn-outline-warning btn-lg">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>

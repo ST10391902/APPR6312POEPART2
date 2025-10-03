@@ -1,0 +1,96 @@
+﻿@model APPR6312PART2.Models.Disaster
+
+@{
+    ViewData["Title"] = "Report Disaster";
+}
+
+<h2>Report a Disaster</h2>
+
+<form asp-action="Report" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="DisasterType"></label>
+        <select asp-for="DisasterType" class="form-control">
+            <option value="">-- Select Disaster Type --</option>
+            <option>Earthquake</option>
+            <option>Flood</option>
+            <option>Fire</option>
+            <option>Drought</option>
+            <option>Pandemic</option>
+            <option>War</option> 
+            <option>Tornado</option>
+            <option>Hurricane</option>
+            <option>Tsunami</option>
+            <option>Landslide</option>
+            <option>Volcano</option>
+            <option>Extreme Heat</option>
+            <option>Extreme Cold</option>
+            <option>Famine</option>
+            <option>Industrial Accident</option>
+            <option>Chemical Spill</option>
+            <option>Nuclear Accident</option>
+            <option>Terrorism</option>
+            <option>Other</option>
+        </select>
+        <span asp-validation-for="DisasterType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" class="form-control" type="date" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" class="form-control" type="date" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Severity"></label>
+        <select asp-for="Severity" class="form-control">
+            <option value="">-- Select Severity --</option>
+            <option>Low</option>
+            <option>Moderate</option>
+            <option>High</option>
+            <option>Critical</option>
+        </select>
+        <span asp-validation-for="Severity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="RequiredAidType"></label>
+        <input asp-for="RequiredAidType" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ContactPerson"></label>
+        <input asp-for="ContactPerson" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ContactPhone"></label>
+        <input asp-for="ContactPhone" class="form-control" />
+        <span asp-validation-for="ContactPhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="AffectedPeople"></label>
+        <input asp-for="AffectedPeople" class="form-control" type="number" />
+        <span asp-validation-for="AffectedPeople" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit Report</button>
+</form>
